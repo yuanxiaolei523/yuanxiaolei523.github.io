@@ -184,7 +184,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/10/21/useEffect/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/10/08/JavaScript/FunctionConstructor/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -198,7 +198,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/10/21/useEffect/" class="post-title-link" itemprop="url">Hello World</a>
+            <a href="/2024/10/08/JavaScript/FunctionConstructor/" class="post-title-link" itemprop="url">Function Constructor</a>
         </h2>
 
         <div class="post-meta">
@@ -209,8 +209,331 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-10-21 20:10:41 / 修改时间：23:44:56" itemprop="dateCreated datePublished" datetime="2023-10-21T20:10:41+08:00">2023-10-21</time>
+              <time title="创建时间：2024-10-08 23:28:06 / 修改时间：23:37:37" itemprop="dateCreated datePublished" datetime="2024-10-08T23:28:06+08:00">2024-10-08</time>
             </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JS/" itemprop="url" rel="index"><span itemprop="name">JS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h1><p>Function对象提供了用于处理函数的方法。在JS中，每个函数实际上都是一个Function 对象</p>
+<h2 id="new-Function"><a href="#new-Function" class="headerlink" title="new Function()"></a>new Function()</h2><p>当Functioon作为一个构造函数时，会创建一个新的Function对象，该对象只能在全局作用域中运行</p>
+<blockquote>
+<p>会有安全问题和相对较小的性能问题</p>
+</blockquote>
+<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><ul>
+<li>argN (可选)<br>argN意味着你可以传入N个参数(N&gt;&#x3D;0)，每个名称必须都是一个字符串，对应一个有效的js参数，这些参数可以在functionBody内访问到</li>
+<li>functionBody<br>一个由函数体组成的字符串</li>
+</ul>
+<blockquote>
+<p>如果argN不传的话，那么会默认第一个参数就是functionBody</p>
+</blockquote>
+<h3 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h3><p>返回一个由匿名函数组成的字符串，类似于调用toString()</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">`</span></span><br><span class="line"><span class="string">function anonymous(<span class="subst">$&#123;args.join(<span class="string">&#x27;,&#x27;</span>)&#125;</span></span></span><br><span class="line"><span class="string">) &#123;</span></span><br><span class="line"><span class="string">    <span class="subst">$&#123;functionBody&#125;</span></span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string">`</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="number">12</span></span><br><span class="line"><span class="keyword">const</span> b = <span class="number">13</span></span><br><span class="line"><span class="keyword">const</span> adder = <span class="keyword">new</span> <span class="title class_">Function</span>(<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;console.log(a + b)&#x27;</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(adder)</span><br><span class="line"><span class="title function_">adder</span>(<span class="number">1</span>, <span class="number">2</span>) <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+<p>上述的<code>console.log(adder)</code> 会打印</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ƒ <span class="title function_">anonymous</span>(<span class="params">a,b</span></span><br><span class="line"><span class="params"></span>) &#123;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a + b)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="与直接写函数表达式或者函数声明创建一个函数有什么区别呢？"><a href="#与直接写函数表达式或者函数声明创建一个函数有什么区别呢？" class="headerlink" title="与直接写函数表达式或者函数声明创建一个函数有什么区别呢？"></a>与直接写函数表达式或者函数声明创建一个函数有什么区别呢？</h3><ol>
+<li>使用<code>new Function()</code>创建的Function 对象会在函数创建时完成解析，而函数声明和函数表达式会和其他的代码一起被解析</li>
+<li>使用<code>new Function()</code>的效率比另外两种方式更低</li>
+<li>在<code>new Function</code>创建的Function对象中，如果你想在FunctionBody内访问函数名，可以通过<code>arguments.callee</code>来指代函数本身(非严格模式下)，而另外两者可以直接访问函数名</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/11/09/AST/ast/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小声嘟嘟">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小声嘟嘟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/11/09/AST/ast/" class="post-title-link" itemprop="url">ast基础</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-11-09 23:28:31" itemprop="dateCreated datePublished" datetime="2023-11-09T23:28:31+08:00">2023-11-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-10-08 23:38:21" itemprop="dateModified" datetime="2024-10-08T23:38:21+08:00">2024-10-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ast/" itemprop="url" rel="index"><span itemprop="name">ast</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="AST基础"><a href="#AST基础" class="headerlink" title="AST基础"></a>AST基础</h1><p>AST是Abstract Syntax Tree（抽象语法树）的缩写</p>
+<p>如果你不知道你的代码转成抽象语法后是什么样子的，可以参考下面的网站</p>
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p><a target="_blank" rel="noopener" href="https://astexplorer.net/">AST Explorer</a> AST的在线调试工具，只需要将你的代码输入进去，就能查看转换后的AST结构</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/estree/estree/blob/master/es2015.md#programs">AST的相关规范</a></p>
+<p><strong>所有表达式都继承自Expression</strong></p>
+<h4 id="常用的AST节点类型表"><a href="#常用的AST节点类型表" class="headerlink" title="常用的AST节点类型表"></a>常用的AST节点类型表</h4><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>类型</td>
+<td>中文名</td>
+<td>描述</td>
+</tr>
+<tr>
+<td>Program</td>
+<td>程序主体</td>
+<td>当前所有的代码</td>
+</tr>
+<tr>
+<td>FunctionDeclaration</td>
+<td>函数声明</td>
+<td>function add() {}</td>
+</tr>
+<tr>
+<td>VariableDeclaration</td>
+<td>变量声明</td>
+<td>使用let、const、var声明变量</td>
+</tr>
+<tr>
+<td>ExpressionStatement</td>
+<td>表达式语句</td>
+<td>一般为函数调用或者更新变量</td>
+</tr>
+<tr>
+<td>BlockStatement</td>
+<td>块语句</td>
+<td>包含在{}内的语句</td>
+</tr>
+<tr>
+<td>ReturnStatement</td>
+<td>返回语句</td>
+<td>return语句</td>
+</tr>
+<tr>
+<td>BinaryExpression</td>
+<td>二进制语句</td>
+<td>一般是加减乘除等运算</td>
+</tr>
+<tr>
+<td>Identifier</td>
+<td>标识符</td>
+<td>一般都是声明的变量</td>
+</tr>
+<tr>
+<td>Literal</td>
+<td>字面量</td>
+<td>一般都是声明的变量的值</td>
+</tr>
+<tr>
+<td>CallExpression</td>
+<td>调用语句</td>
+<td>add(1,2) ，一般都是包含在ExpressionStatement内部</td>
+</tr>
+<tr>
+<td>ObjectExpression</td>
+<td>对象表达式</td>
+<td>let a &#x3D; {};</td>
+</tr>
+</tbody></table>
+<h3 id="最基础的Node结构"><a href="#最基础的Node结构" class="headerlink" title="最基础的Node结构"></a>最基础的Node结构</h3><p>可以理解为下面所有类型都是继承自Node对象</p>
+<p>AST的每个节点都变现为Node对象，它的实现如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">interface <span class="title class_">Node</span> &#123;</span><br><span class="line">    <span class="attr">type</span>: string;</span><br><span class="line">    <span class="attr">loc</span>: <span class="title class_">SourceLocation</span> | <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>type表示该Node对象的类型，下面会一一介绍</p>
+<p>loc则是表示了该Node对象的源位置信息，如果该节点不包含源位置信息，则该字段为空</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">interface <span class="title class_">SourceLocation</span> &#123;</span><br><span class="line">  <span class="attr">source</span>: string || <span class="literal">null</span>;</span><br><span class="line">  <span class="attr">start</span>: <span class="title class_">Position</span>; </span><br><span class="line">  <span class="attr">end</span>: <span class="title class_">Position</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>每一个Position对象都包含了line和column来表示行号和列号</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">interface <span class="title class_">Position</span> &#123;</span><br><span class="line">  <span class="attr">line</span>: <span class="title class_">Number</span>; </span><br><span class="line">  <span class="attr">column</span>: <span class="title class_">Number</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>line是≥1 的，column是≥0的</p>
+<p>最终start和end会转换成在代码中所在位置的坐标</p>
+<h2 id="跟着例子学AST"><a href="#跟着例子学AST" class="headerlink" title="跟着例子学AST"></a>跟着例子学AST</h2><p>js语法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">add</span>(<span class="params">a, b</span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">let</span> b = <span class="number">3</span>;</span><br><span class="line"><span class="title function_">add</span>(a, b)</span><br></pre></td></tr></table></figure>
+
+<p>上述代码转成AST为</p>
+<p><img src="https://secure2.wostatic.cn/static/gV2Poqp1VYK9yWPyes7AkH/image.png?auth_key=1699538123-cNmyHaS59xoNW3Ua8nursQ-0-30725cc2f68348d5879b4191edf12da3"></p>
+<p>接下来我们分别看每种类型以及每种类型下面对应的字段是什么意思</p>
+<h3 id="Program"><a href="#Program" class="headerlink" title="Program"></a>Program</h3><p>完整的程序源树。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">interface <span class="title class_">Program</span> <span class="keyword">extends</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">    <span class="attr">type</span>: <span class="string">&quot;Program&quot;</span>;</span><br><span class="line">    <span class="attr">body</span>: [ <span class="title class_">Directive</span> | <span class="title class_">Statement</span> ];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>body: 标识它内部的代码，一般是语句或者Directive</p>
+<p>sourceType(源类型): script | module。如果要解析ES6，那么值必须是module，否则是script &#x2F;&#x2F; todo:待定</p>
+<h3 id="Identifier"><a href="#Identifier" class="headerlink" title="Identifier"></a>Identifier</h3><p>标识符，标识符可以是表达式或解构模式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">interface <span class="title class_">Identifier</span> &lt;: <span class="title class_">Expression</span>, <span class="title class_">Pattern</span> &#123;</span><br><span class="line">    <span class="attr">type</span>: <span class="string">&quot;Identifier&quot;</span>;</span><br><span class="line">    <span class="attr">name</span>: string;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>name：表示该标识符的名字，一般是变量名</li>
+<li>type：类型</li>
+</ol>
+<h3 id="Literal"><a href="#Literal" class="headerlink" title="Literal"></a>Literal</h3><p>字面量，字面量也可以是表达式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">interface <span class="title class_">Literal</span> &lt;: <span class="title class_">Expression</span> &#123;</span><br><span class="line">    <span class="attr">type</span>: <span class="string">&quot;Literal&quot;</span>;</span><br><span class="line">    <span class="attr">value</span>: string | boolean | <span class="literal">null</span> | number | <span class="title class_">RegExp</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>type:类型</li>
+<li>value：表示其值</li>
+<li>raw：表示原始值，是字符串类型</li>
+</ol>
+<h3 id="Declaration"><a href="#Declaration" class="headerlink" title="Declaration"></a>Declaration</h3><h4 id="FunctionDeclaration：函数声明"><a href="#FunctionDeclaration：函数声明" class="headerlink" title="FunctionDeclaration：函数声明"></a>FunctionDeclaration：函数声明</h4><p><img src="https://secure2.wostatic.cn/static/fChMiFm5YiTesDEC7ij2NB/image.png?auth_key=1699538123-afc23jXvYzxCD83dUo2Aho-0-33ee54617b2149d009cf4ca6720c2358"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">interface <span class="title class_">FunctionDeclaration</span> <span class="keyword">extends</span> <span class="title class_">Function</span>, <span class="title class_">Declaration</span>  &#123;</span><br><span class="line">  <span class="attr">type</span>: <span class="string">&#x27;FunctionDeclaration&#x27;</span>;</span><br><span class="line">  <span class="attr">id</span>: <span class="title class_">Identifier</span>,</span><br><span class="line">  <span class="attr">params</span>: [pattern]; <span class="comment">// 继承自Function</span></span><br><span class="line">  <span class="attr">body</span>: <span class="title class_">FunctionBody</span> <span class="comment">// 继承自Function</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ol>
+<li>id: 表示函数名</li>
+<li>params: 函数参数，是一个数组，数组内每一项都是一个标识符类型，其内有name属性，表示参数名</li>
+<li>body：FunctionBody类型是一个块语句结构</li>
+<li>expression:false</li>
+<li>generator: false</li>
+<li>async</li>
+</ol>
+<h4 id="VariableDeclaration"><a href="#VariableDeclaration" class="headerlink" title="VariableDeclaration"></a>VariableDeclaration</h4><p>变量声明</p>
+<p><code>let a = 2</code>;</p>
+<p><img src="https://secure2.wostatic.cn/static/8RYzp6hhRHaVJWpVaDg8A3/image.png?auth_key=1699538123-5FKpkvw9qsQNCwRZNQ1X8k-0-ab18117cb6687d9ab054273547a18828"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">interface <span class="title class_">VariableDeclaration</span> <span class="keyword">extends</span> <span class="title class_">Declaration</span> &#123;</span><br><span class="line">  <span class="attr">type</span>: <span class="string">&#x27;VariableDeclaration&#x27;</span>,</span><br><span class="line">  <span class="attr">declarations</span>: [<span class="title class_">VariableDeclarator</span>],</span><br><span class="line">  <span class="attr">kind</span>: <span class="string">&#x27;var&#x27;</span> | <span class="string">&#x27;let&#x27;</span> | <span class="string">&#x27;const&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>kind表示使用什么关键字声明的变量</p>
+<p>declarations: 用于表示声明变量的相关信息</p>
+<h4 id="VariableDeclarator"><a href="#VariableDeclarator" class="headerlink" title="VariableDeclarator"></a><a target="_blank" rel="noopener" href="https://github.com/estree/estree/blob/master/es5.md#variabledeclarator">VariableDeclarator</a></h4><p>变量说明符</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">interface <span class="title class_">VariableDeclarator</span> <span class="keyword">extends</span> <span class="title class_">Node</span> &#123;</span><br><span class="line">  <span class="attr">type</span>: <span class="string">&#x27;VariableDeclarator&#x27;</span>,</span><br><span class="line">  <span class="attr">id</span>: <span class="title class_">Pattern</span>, <span class="comment">// 用于表示变量名，</span></span><br><span class="line">  <span class="attr">init</span>: <span class="title class_">Expression</span> || <span class="literal">null</span>; <span class="comment">// 表达式或者null，表示变量值</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Patterns-extends-Node"><a href="#Patterns-extends-Node" class="headerlink" title="Patterns extends Node"></a>Patterns extends Node</h3><p>在ES5中Pattern的子类型只有Identifier</p>
+<h3 id="Expression"><a href="#Expression" class="headerlink" title="Expression"></a>Expression</h3><h4 id="ObjectExpression"><a href="#ObjectExpression" class="headerlink" title="ObjectExpression"></a>ObjectExpression</h4><p>对象表达式</p>
+<p><img src="https://secure2.wostatic.cn/static/ggaRweRBe7NAuay85D43Ks/image.png?auth_key=1699538123-6J3p2Gg8wqszVXJfN2Qk5X-0-57636bf02ff7773ce43d2c40a4f78ecd"></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">interface <span class="title class_">ObjectExpression</span> &#123;</span><br><span class="line">  <span class="attr">type</span>: <span class="string">&#x27;ObjectExpression&#x27;</span>,</span><br><span class="line">  <span class="attr">properties</span>: [<span class="string">&#x27;Property&#x27;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Property"><a href="#Property" class="headerlink" title="Property"></a>Property</h3><p>直属于ObjectExpression</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">interface <span class="title class_">Property</span> &#123;</span><br><span class="line">  <span class="attr">type</span>: <span class="string">&#x27;Property&#x27;</span>,</span><br><span class="line">  <span class="attr">key</span>: <span class="title class_">Literal</span> | <span class="title class_">Identifier</span>,</span><br><span class="line">  <span class="attr">value</span>: <span class="title class_">Expression</span>, <span class="comment">// 任意类型的表达式</span></span><br><span class="line">  <span class="attr">kind</span>: <span class="string">&#x27;init&#x27;</span> | <span class="string">&#x27;get&#x27;</span> | <span class="string">&#x27;set&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中key可以是字面量，也可以是标识符</p>
+<p>value可以是任意类型的表达式</p>
+<p>kind只有在初始化变量的时候为init，getter和setter函数，其kind的值为get或者set</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> b = &#123;</span><br><span class="line">  <span class="attr">count</span>: <span class="number">3</span>,</span><br><span class="line">    <span class="keyword">set</span> <span class="title function_">count</span>(<span class="params">value</span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">count</span> = value</span><br><span class="line">    &#125;,</span><br><span class="line">    get count () &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="number">123</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://secure2.wostatic.cn/static/qm4m1wZQPyhBR1eH9242BJ/image.png?auth_key=1699538123-gXrmscEmYZkMcNprbGqnVL-0-58d474f106222483177d965d7b2416f1"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/10/21/React/hooks/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小声嘟嘟">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小声嘟嘟">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/10/21/React/hooks/" class="post-title-link" itemprop="url">Hooks基础</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-10-21 20:10:41" itemprop="dateCreated datePublished" datetime="2023-10-21T20:10:41+08:00">2023-10-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-10-08 23:38:00" itemprop="dateModified" datetime="2024-10-08T23:38:00+08:00">2024-10-08</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -400,15 +723,21 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -442,7 +771,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
